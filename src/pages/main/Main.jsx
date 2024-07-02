@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCategories, getNews } from "../../api/apiNews";
-import { useDebounce } from "../../components/hooks/useDebounce";
+import { useDebounce } from "../../helpers/hooks/useDebounce";
 
 import NewsBanner from "../../components/newsBanner/NewsBanner";
 import NewsList from "../../components/newsList/NewsList";
