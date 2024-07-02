@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
-import { getNews } from "../../api/apiNews";
+import { getCategories, getNews } from "../../api/apiNews";
 
 import NewsBanner from "../../components/newsBanner/NewsBanner";
 import NewsList from "../../components/newsList/NewsList";
 import Skeleton from "../../components/skeleton/Skeleton";
+import Pagination from "../../components/pagination/Pagination";
+import Categories from "../../components/categories/Categories";
 
 import styles from "./styles.module.css";
-import Pagination from "../../components/pagination/Pagination";
 
 function Main() {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [categories, setCategories] = useState([])
+  const [activeCategory, setActiveCategory] = useState("all")
   const pageSize = 10;
   const totalPages = 10;
 
-  async function fetchNews(currentPage) {
+  async function fetchNews(currentPage, activeCategory) {
     try {
       setIsLoading(true);
-      const response = await getNews({ currentPage, pageSize });
+      const response = await getNews({ pageNumber: currentPage, pageSize, category : activeCategory });
       setNews(response.news);
       setIsLoading(false);
     } catch (error) {
@@ -26,9 +29,22 @@ function Main() {
     }
   }
 
+    async function fetchCategories() {
+      try {
+        const response = await getCategories();
+        setCategories(["all", ...response.categories]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
   useEffect(() => {
-    fetchNews(currentPage);
-  }, [currentPage]);
+    fetchNews(currentPage, activeCategory);
+  }, [currentPage, activeCategory]);
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
 
   function handleNextPage() {
     if (currentPage < totalPages) {
@@ -48,6 +64,7 @@ function Main() {
 
   return (
     <main className={styles.main}>
+      <Categories categories={categories} activeCategory={activeCategory} setCategory={setActiveCategory}/>
       {news.length > 0 && !isLoading ? <NewsBanner item={news[0]} /> : <Skeleton type="banner" />}
       <Pagination
         currentPage={currentPage}
