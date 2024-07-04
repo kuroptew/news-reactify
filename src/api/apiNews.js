@@ -10,7 +10,7 @@ export async function getNews({ pageNumber = 1, pageSize = 10, category, keyword
         apiKey: API_KEY,
         page_number: pageNumber,
         page_size: pageSize,
-        category: category === "all" ? null : category,
+        category,
         keywords,
       },
     });
