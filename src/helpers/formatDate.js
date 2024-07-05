@@ -6,5 +6,5 @@ export default function formatDate(date) {
     day: "numeric",
   };
 
-  return date.toLocaleDateString('en-US', options)
+  return date.toLocaleDateString("en-US", options);
 }
