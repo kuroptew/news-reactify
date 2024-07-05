@@ -1,15 +1,15 @@
 import styles from "./styles.module.css";
 
-function Skeleton({ count = 1, type = "banner" }) {
-  if (type === "banner") {
-    return <div className={styles.banner}></div>;
+function Skeleton({ count = 1, type = "banner", direction = "column" }) {
+  if (count === 1) {
+    return <div className={type === "banner" ? styles.banner : styles.item}></div>;
   }
 
-  if (count > 1 && type === "item") {
+  if (count > 1) {
     return (
-      <ul className={styles.list}>
+      <ul className={direction === "column" ? styles.columnList : styles.rowList}>
         {[...Array(count)].map((_, index) => (
-          <li key={index} className={styles.item}></li>
+          <li key={index} className={type === "banner" ? styles.banner : styles.item}></li>
         ))}
       </ul>
     );

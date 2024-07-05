@@ -27,4 +27,3 @@ export function useFetch(fetchFunc, params) {
     error,
   };
 }
-
