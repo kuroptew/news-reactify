@@ -1,11 +1,9 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
-function Image({image}) {
+function Image({ image }) {
   return (
-    <div className={styles.wrapper}>
-      {image ? <img className={styles.image} alt="Banner img" src={image} /> : null}
-    </div>
+    <div className={styles.wrapper}>{image ? <img className={styles.image} alt="Banner img" src={image} /> : null}</div>
   );
 }
 
-export default Image
+export default Image;
