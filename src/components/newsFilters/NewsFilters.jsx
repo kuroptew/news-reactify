@@ -1,7 +1,9 @@
 import { getCategories } from "../../api/apiNews";
 import { useFetch } from "../../helpers/hooks/useFetch";
+
 import Categories from "../categories/Categories";
 import Search from "../search/Search";
+import Slider from "../slider/Slider";
 
 import styles from "./styles.module.css";
 
@@ -11,14 +13,16 @@ function NewsFilters({ filters, changeFilter }) {
   return (
     <div className={styles.filters}>
       {dataCategories ? (
-        <Categories
-          categories={dataCategories.categories}
-          activeCategory={filters.category}
-          f
-          setCategory={(category) => {
-            changeFilter("category", category);
-          }}
-        />
+        <Slider>
+          <Categories
+            categories={dataCategories.categories}
+            activeCategory={filters.category}
+            f
+            setCategory={(category) => {
+              changeFilter("category", category);
+            }}
+          />
+        </Slider>
       ) : null}
 
       <Search
