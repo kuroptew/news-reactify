@@ -1,6 +1,13 @@
+import { DirectionType, SkeletonType } from "../../types";
 import styles from "./styles.module.css";
 
-function Skeleton({ count = 1, type = "banner", direction = "column" }) {
+interface Props {
+  type?: SkeletonType;
+  count?: number;
+  direction?: DirectionType;
+}
+
+function Skeleton({ count = 1, type = "banner", direction = "column" }: Props) {
   if (count === 1) {
     return <div className={type === "banner" ? styles.banner : styles.item}></div>;
   }

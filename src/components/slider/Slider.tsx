@@ -1,15 +1,22 @@
-import { useRef, cloneElement } from "react";
+import { useRef, cloneElement, ReactElement } from "react";
 
 import styles from "./styles.module.css";
 
-function Slider({ children, step = 150 }) {
-  const sliderRef = useRef(null);
+interface Props {
+  children: ReactElement;
+  step?: number;
+}
+
+function Slider({ children , step = 150} : Props) {
+  const sliderRef = useRef<HTMLElement | null>(null);
 
   function scrollLeft() {
+    if(!sliderRef.current) return
     sliderRef.current.scrollLeft -= step;
   }
 
   function scrollRight() {
+    if(!sliderRef.current) return
     sliderRef.current.scrollLeft += step;
   }
 

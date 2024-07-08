@@ -1,5 +1,6 @@
 import { getCategories } from "../../api/apiNews";
 import { useFetch } from "../../helpers/hooks/useFetch";
+import { CategoriesApiResponse, IFilters } from "../../types";
 
 import Categories from "../categories/Categories";
 import Search from "../search/Search";
@@ -7,8 +8,13 @@ import Slider from "../slider/Slider";
 
 import styles from "./styles.module.css";
 
-function NewsFilters({ filters, changeFilter }) {
-  const { data: dataCategories } = useFetch(getCategories);
+interface Props {
+  filters: IFilters;
+  changeFilter: (key: string, value: string  | null) => void;
+}
+
+function NewsFilters({ filters, changeFilter }: Props) {
+  const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(getCategories);
 
   return (
     <div className={styles.filters}>
@@ -17,7 +23,6 @@ function NewsFilters({ filters, changeFilter }) {
           <Categories
             categories={dataCategories.categories}
             activeCategory={filters.category}
-            f
             setCategory={(category) => {
               changeFilter("category", category);
             }}

@@ -2,8 +2,13 @@ import Image from "../imageBanner/Image";
 import { formatTimeAgo } from "../../helpers/formatTimeAgo";
 
 import styles from "./styles.module.css";
+import { INews } from "../../types";
 
-function NewsBanner({ item }) {
+interface Props {
+  item: INews;
+}
+
+function NewsBanner({ item }: Props) {
   return (
     <div className={styles.banner}>
       <Image image={item.image} />
