@@ -5,6 +5,7 @@ import { useDebounce } from "../../helpers/hooks/useDebounce";
 import { useFetch } from "../../helpers/hooks/useFetch";
 import { useFilters } from "../../helpers/hooks/useFilters";
 import { usePagination } from "../../helpers/hooks/usePagination";
+import { NewsApiResponse, ParamsType } from "../../types";
 
 import NewsFilters from "../newsFilters/NewsFilters";
 import NewsListWithSkeleton from "../newsList/NewsList";
@@ -13,20 +14,20 @@ import PaginationWrapper from "../paginationWrapper/PaginationWrapper";
 import styles from "./styles.module.css";
 
 function NewsByFilters() {
-  const { pageNumber, handleClickPage, handleNextPage, handlePrevPage } = usePagination(TOTAL_PAGES);
+  const { page_number, handleClickPage, handleNextPage, handlePrevPage } = usePagination(TOTAL_PAGES);
 
   const { filters, changeFilter } = useFilters({
-    pageSize: PAGE_SIZE,
+    page_number,
+    page_size: PAGE_SIZE,
     category: null,
     keywords: "",
   });
 
   const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
-  const { data, isLoading } = useFetch(getNews, {
+  const { data, isLoading } = useFetch<NewsApiResponse, ParamsType>(getNews, {
     ...filters,
-    pageNumber,
-    debouncedKeywords,
+    keywords:debouncedKeywords,
   });
 
   return (
@@ -34,13 +35,13 @@ function NewsByFilters() {
       <NewsFilters filters={filters} changeFilter={changeFilter} />
 
       <PaginationWrapper
-        currentPage={pageNumber}
+        currentPage={page_number}
         totalPages={TOTAL_PAGES}
         handleNextPage={handleNextPage}
         handleClickPage={handleClickPage}
         handlePrevPage={handlePrevPage}
       >
-        <NewsListWithSkeleton isLoading={isLoading} items={data && data.news} />
+        <NewsListWithSkeleton isLoading={isLoading} items={data?.news} />
       </PaginationWrapper>
     </section>
   );
