@@ -1,6 +1,11 @@
 import styles from "./styles.module.css";
 
-function Search({ value, changeValue }) {
+interface Props {
+  value: string;
+  changeValue: (value: string) => void;
+}
+
+function Search({ value, changeValue }: Props) {
   return (
     <form className={styles.search}>
       <input
