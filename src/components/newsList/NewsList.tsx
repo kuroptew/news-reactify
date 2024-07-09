@@ -1,4 +1,4 @@
-import withSkeleton from "../../helpers/hocs/withSkeleton/withSkeleton";
+import { withSkeleton } from "../../helpers/hocs/withSkeleton/withSkeleton";
 import { INews } from "../../types";
 import NewsItem from "../newsItem/NewsItem";
 

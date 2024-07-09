@@ -1,17 +1,17 @@
 import Skeleton from "../../../components/skeleton/Skeleton";
 import { DirectionType, SkeletonType } from "../../../types";
 
-interface Props {
+export interface IPropsWithSkeleton {
   isLoading: boolean
 }
 
-function withSkeleton<P extends object>(
+export function withSkeleton<P extends object>(
   Component: React.ComponentType<P>,
   type?: SkeletonType,
   count?: number,
   direction?: DirectionType
 ) {
-  return function WithSkeleton(props: Props & P) {
+  return function WithSkeleton(props: IPropsWithSkeleton & P) {
     const { isLoading, ...restProps } = props;
 
     if (isLoading) {
@@ -22,4 +22,3 @@ function withSkeleton<P extends object>(
   };
 }
 
-export default withSkeleton;
