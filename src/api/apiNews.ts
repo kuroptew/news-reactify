@@ -6,7 +6,7 @@ const BASE_URL = import.meta.env.VITE_NEWS_BASE_API_URL;
 
 export async function getNews(params?: ParamsType): Promise<NewsApiResponse> {
   try {
-    const { page_number = 1, page_size = 10, category, keywords } = params || {};
+    const { page_number = 1, page_size = 10, category, keywords } = params || {};   
 
     const response = await axios.get<NewsApiResponse>(`${BASE_URL}search`, {
       params: {

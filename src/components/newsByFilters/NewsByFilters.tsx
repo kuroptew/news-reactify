@@ -17,7 +17,6 @@ function NewsByFilters() {
   const { page_number, handleClickPage, handleNextPage, handlePrevPage } = usePagination(TOTAL_PAGES);
 
   const { filters, changeFilter } = useFilters({
-    page_number,
     page_size: PAGE_SIZE,
     category: null,
     keywords: "",
@@ -27,14 +26,18 @@ function NewsByFilters() {
 
   const { data, isLoading } = useFetch<NewsApiResponse, ParamsType>(getNews, {
     ...filters,
+    page_number,
     keywords:debouncedKeywords,
   });
+
 
   return (
     <section className={styles.section}>
       <NewsFilters filters={filters} changeFilter={changeFilter} />
 
       <PaginationWrapper
+        top
+        bottom
         currentPage={page_number}
         totalPages={TOTAL_PAGES}
         handleNextPage={handleNextPage}
