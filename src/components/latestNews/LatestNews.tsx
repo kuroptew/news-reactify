@@ -1,13 +1,11 @@
-import { getLatestNews } from "../../api/apiNews";
-import { useFetch } from "../../helpers/hooks/useFetch";
-import { NewsApiResponse } from "../../types";
+import { newsApi } from "../../store/services/newsApi";
 
 import BannerListWithSkeleton from "../bannersList/BannerList";
 
 import styles from "./styles.module.css";
 
 function LatestNews() {
-  const { data, isLoading } = useFetch<NewsApiResponse, null>(getLatestNews);
+  const { data, isLoading} = newsApi.useGetLatestNewsQuery(null)
 
   return (
     <section className={styles.section}>
