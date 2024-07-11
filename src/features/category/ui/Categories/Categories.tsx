@@ -1,6 +1,7 @@
 import { ForwardedRef, forwardRef } from "react";
-import styles from "./styles.module.css";
 import { CategoriesType } from "@/entities/category";
+
+import styles from "./styles.module.css";
 
 interface Props {
   categories: CategoriesType[];
@@ -19,7 +20,7 @@ const Categories = forwardRef(
           onClick={() => setSelectedCategory(null)}
           className={!selectedCategory ? styles.active : styles.item}
         >
-          All
+          all
         </button>
         {categories.map((category) => {
           return (
