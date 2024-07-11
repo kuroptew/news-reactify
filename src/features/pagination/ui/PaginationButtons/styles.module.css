@@ -1,0 +1,48 @@
+.pagination {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageNumber,
+.arrow {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pageNumber:disabled,
+.arrow:disabled {
+  cursor: default;
+  color: #6b4eff;
+}
+
+
+.pagination.dark .pageNumber,
+.pagination.dark .arrow {
+  background-color: #23272f;
+  color: #f6f7f9;
+}
+
+.pagination.light .pageNumber,
+.pagination.light .arrow {
+  background-color: white;
+  color: black;
+}
+
+.pagination.dark .pageNumber:disabled,
+.pagination.light .pageNumber:disabled {
+  color: #6b4eff;
+}
+
+.pageNumber {
+  padding: 8px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
