@@ -1,6 +1,7 @@
 import { formatTimeAgo } from "@/shared/helpers/formatTimeAgo";
 import Image from "@/shared/ui/Image/Image";
 import { SkeletonType } from "@/shared/interfaces";
+import { ReactNode } from "react";
 import { INews } from "../../model/types";
 
 import styles from "./styles.module.css";
@@ -8,9 +9,10 @@ import styles from "./styles.module.css";
 interface Props {
   item: INews;
   type: SkeletonType;
+  viewNewsSlot?: (news: INews) => ReactNode;
 }
 
-export const NewsCard = ({item, type}: Props) => {
+export const NewsCard = ({item, type, viewNewsSlot}: Props) => {
   return (
     <li className={`${styles.card} ${type === "banner" && styles.banner}`}>
       {type === "banner" ? (
@@ -28,6 +30,8 @@ export const NewsCard = ({item, type}: Props) => {
           {formatTimeAgo(item.published)} by {item.author}
         </p>
       </div>
+
+      {viewNewsSlot ? viewNewsSlot(item) : null}
     </li>
   );
 }
