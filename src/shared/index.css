@@ -22,12 +22,14 @@
 
 .app.dark p,
 .app.dark h3,
+.app.dark h2,
 .app.dark h1 {
   color: #f6f7f9;
 }
 
 .app.light p,
 .app.light h3,
+.app.light h2,
 .app.light h1 {
   color: black;
 }
