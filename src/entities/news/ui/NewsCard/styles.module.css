@@ -5,10 +5,15 @@
 }
 
 .banner {
+  min-height: 290px;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
   font-size: 14px;
 }
 
@@ -19,4 +24,10 @@
   background-position: center;
   background-size: cover;
   flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
